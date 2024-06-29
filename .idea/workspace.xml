@@ -1,39 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2752dce-e91d-4ee6-9404-eea85cdc6ce0" name="Changes" comment="" />
+    <list default="true" id="d2752dce-e91d-4ee6-9404-eea85cdc6ce0" name="Changes" comment="commit 2">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/postgresql_42_7_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/postgresql-42.7.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/Header.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/ImagePanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/Search.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/add/Form.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/add/RenderAddEntryPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/edit/Form.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/edit/RenderEditEntryPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/help/RenderHelpPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/homepage/Choice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/homepage/CreateCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/homepage/Preview.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/homepage/RenderHomePage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/search/QuickSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/search/RenderSearchPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/view/RenderViewEntryPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/view/card/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/view/card/CreateCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/config/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/services/ComponentEffects.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/services/ComponentStyle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/services/CustomScrollBarUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/services/FontManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/services/PrepareDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fuhrparkverwaltung.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Fuhrparkverwaltung.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/commponents/HomePage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/config/.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/config/ConfigReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/models/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/modules/UserModule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/modules/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/CreatePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/CreatePage.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Robertwlt03&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Robertwlt03/Fuhrparkverwaltung.git&quot;,
+    &quot;accountId&quot;: &quot;4f246ec8-03f2-4d36-86ec-f1598b17b1f0&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2hs58fA7SuErEgtbj8ZJZFxRCZQ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.CreatePage.executor": "Run",
+    "Application.ImageFileChooser.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.MainFrame.executor": "Run",
+    "Application.PostgreSQLExample.executor": "Run",
+    "Application.PostgreSQLJDBC.executor": "Run",
+    "Application.PrepareDatabase.executor": "Run",
+    "Application.SwingPostgresApp.executor": "Run",
+    "Application.TextWrapLabelExample.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/rober/OneDrive/Desktop/Java App/Fuhrparkverwaltung/src/app/config",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/rober/OneDrive/Desktop/Java App/Fuhrparkverwaltung/src/Main.java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "proofread",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rober\OneDrive\Desktop\Java App\Fuhrparkverwaltung\src\app\config" />
+      <recent name="C:\Users\rober\OneDrive\Desktop\Java App\Fuhrparkverwaltung\src\app\assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rober\OneDrive\Desktop\Java App\Fuhrparkverwaltung" />
+      <recent name="C:\Users\rober\OneDrive\Desktop\Java App\Fuhrparkverwaltung\lib" />
+      <recent name="C:\Users\rober\OneDrive\Desktop\Java App\Fuhrparkverwaltung\src\app\assets" />
+      <recent name="C:\Users\rober\OneDrive\Desktop\Java App\Fuhrparkverwaltung\src\app" />
+      <recent name="C:\Users\rober\OneDrive\Desktop\Java App\Fuhrparkverwaltung\src\app\modules" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="app.commponents.search" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -46,11 +154,39 @@
       <option name="presentableId" value="Default" />
       <updated>1718369787169</updated>
       <workItem from="1718369788195" duration="1000" />
+      <workItem from="1718379606399" duration="17029000" />
+      <workItem from="1718443150157" duration="2887000" />
+      <workItem from="1718540802314" duration="16566000" />
+      <workItem from="1718575148966" duration="38000" />
+      <workItem from="1718729544058" duration="20028000" />
+      <workItem from="1718801147691" duration="12039000" />
+      <workItem from="1718813344694" duration="4160000" />
+      <workItem from="1718817565968" duration="11971000" />
+      <workItem from="1718863516502" duration="16272000" />
+      <workItem from="1719250903702" duration="10936000" />
+      <workItem from="1719341323877" duration="13953000" />
+      <workItem from="1719410813982" duration="17472000" />
+      <workItem from="1719471133895" duration="11693000" />
+      <workItem from="1719564867853" duration="42836000" />
+      <workItem from="1719646602872" duration="7274000" />
+      <workItem from="1719663776903" duration="2790000" />
+      <workItem from="1719666602604" duration="5083000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -62,5 +198,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
