@@ -1,21 +1,29 @@
 package app.component.view.card;
 
+import app.models.Vehicle;
+import app.modules.VehiclesModule;
 import app.services.CreatePage;
 import app.services.CustomScrollBarUI;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.sql.Connection;
+import java.util.List;
 
-public class Card {
-    private CreatePage createPage;
+public class AllCards {
     private final CreateCard createCard = new CreateCard();
+    private final Connection conn;
+    private final JPanel cardGrid = new JPanel(new GridBagLayout());
 
-    public JScrollPane  createCardPanel(CreatePage createPage) {
-        this.createPage = createPage;
+    public AllCards(Connection conn) {
+        this.conn = conn;
+        // Start the timer to refresh cards every 5 seconds
+        Timer timer = new Timer(10000, _ -> refreshCards());
+        timer.start();
+    }
 
+    public JScrollPane createAllCardsPanel(CreatePage createPage) {
         JPanel cardPanel = new JPanel(new BorderLayout());
         cardPanel.setOpaque(false);
         cardPanel.setBorder(new EmptyBorder(0, 20, 0, 20));
@@ -25,24 +33,9 @@ public class Card {
         innerCardPanel.setLayout(new GridBagLayout());
         cardPanel.add(innerCardPanel, BorderLayout.NORTH);
 
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1.0;
-
-        JPanel cardGrid = new JPanel(new GridBagLayout());
         cardGrid.setOpaque(false);
 
-        // Initial layout setup
-        updateCardLayout(this.createPage, cardGrid, createPage.getWidth());
-
-
-        // Update the layout based on frame width
-        createPage.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                updateCardLayout(Card.this.createPage, cardGrid, createPage.getWidth());
-            }
-        });
+        updateAllCards(cardGrid);
 
         JScrollPane scrollPane = new JScrollPane(cardPanel);
         scrollPane.setBorder(null);
@@ -55,31 +48,29 @@ public class Card {
         JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
         verticalScrollBar.setUI(new CustomScrollBarUI());
 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1.0;
+
         gbc.gridy = 1;
         innerCardPanel.add(cardGrid, gbc);
 
         return scrollPane;
     }
 
-    private void updateCardLayout(CreatePage createPage ,JPanel cardGrid, int pageWidth) {
+    private void updateAllCards(JPanel cardGrid) {
         cardGrid.removeAll();
 
-        String[] card_brand = {"BMW", "Audi", "Ferrari"};
+        VehiclesModule vehiclesModule = new VehiclesModule();
+        List<Vehicle> vehicles = vehiclesModule.getAllVehicles(conn);
+
         int gridy = 0;
         int gridx = -1; // -1 so it starts with 0
         int counter = -1; // -1 so it starts with 0
         int max_counter = 3;
         int max_column = 2; // max for gridx starts with 0 | 2 = 3 column
 
-       if (pageWidth <= 1300 && pageWidth > 900) {
-            max_counter = 2;
-            max_column = 1;
-        } else if (pageWidth <= 900) {
-           max_counter = 1;
-           max_column = 0;
-       }
-
-        for (int i = 0; i < card_brand.length; i++) {
+        for (Vehicle vehicle : vehicles) {
             counter++;
             gridx++;
 
@@ -90,22 +81,28 @@ public class Card {
             }
 
             createCard.addCard(
-                    createPage,
                     max_column,
                     cardGrid,
-                    "test",
-                    card_brand[i],
-                    "123",
-                    "PKW",
-                    "Grau",
-                    "2010",
-                    "Dies ist ein langer Text, der automatisch umbrochen wird, wenn die Grenze erreicht wird.",
+                    vehicle.getId(),
+                    vehicle.getImagePath(),
+                    vehicle.getBrand(),
+                    vehicle.getLicensePlate(),
+                    vehicle.getModel(),
+                    vehicle.getType(),
+                    vehicle.getColor(),
+                    String.valueOf(vehicle.getYear()),
+                    vehicle.getDescription(),
                     gridx,
-                    gridy
+                    gridy,
+                    conn
             );
         }
 
         cardGrid.revalidate();
         cardGrid.repaint();
+    }
+
+    public void refreshCards() {
+        updateAllCards(cardGrid);
     }
 }

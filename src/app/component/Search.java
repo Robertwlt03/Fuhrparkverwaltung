@@ -1,5 +1,6 @@
 package app.component;
 
+import app.models.Vehicle;
 import app.services.ComponentEffects;
 import app.services.ComponentStyle;
 import app.services.CreatePage;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 
 public class Search implements ActionListener {
     private CreatePage createPage;
+    private final Vehicle vehicle = new Vehicle();
     private final ComponentStyle componentStyle = new ComponentStyle();
     private final ComponentEffects componentEffects = new ComponentEffects();
     private final JButton searchButton = new JButton("Suchen");
@@ -57,7 +59,7 @@ public class Search implements ActionListener {
         JPanel searchPanelGrid = new JPanel(new GridBagLayout());
         searchPanelGrid.setOpaque(false);
 
-        addSearchPanel(searchPanelGrid, "Marke", 0, false, null);
+        addSearchPanel(searchPanelGrid, "Marke", 0, true, vehicle.getPopularBrands());
         addSearchPanel(searchPanelGrid, "Modell", 1, false, null);
         addSearchPanel(searchPanelGrid, "Typ", 2, true, new String[]{"","PKW", "LKW"});
         addSearchPanel(searchPanelGrid, "Farbe", 3, false, null);

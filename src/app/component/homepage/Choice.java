@@ -102,7 +102,7 @@ public class Choice implements ActionListener {
             createPage.showPage("Hinzufügen");
             createPage.isActiveLink(null);
         } else if (e.getSource() == loadAllEntryButton) {
-            createPage.showPage("Ergebnisse");
+            createPage.showPage("Ergebnisse Alle");
             createPage.isActiveLink(null);
         }
     }

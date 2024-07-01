@@ -5,43 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2752dce-e91d-4ee6-9404-eea85cdc6ce0" name="Changes" comment="commit 2">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/postgresql_42_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/postgresql-42.7.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/Header.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/ImagePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/Search.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/add/Form.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/add/RenderAddEntryPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/edit/Form.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/edit/RenderEditEntryPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/help/RenderHelpPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/homepage/Choice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/homepage/CreateCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/homepage/Preview.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/homepage/RenderHomePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/search/QuickSearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/search/RenderSearchPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/view/RenderViewEntryPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/view/card/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/view/card/CreateCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/config/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/services/ComponentEffects.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/services/ComponentStyle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/services/CustomScrollBarUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/services/FontManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/services/PrepareDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/ImagePanelTesting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/edit/CreateEditPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/view/RenderViewAllEntryPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/view/RenderViewSearchPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/view/card/AllCards.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/view/card/SearchCards.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/models/Vehicle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/modules/VehiclesModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fuhrparkverwaltung.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Fuhrparkverwaltung.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/commponents/HomePage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/config/.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/config/ConfigReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/models/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/modules/UserModule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/modules/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/ImagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/ImagePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/Search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/add/Form.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/add/Form.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/add/RenderAddEntryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/add/RenderAddEntryPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/edit/Form.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/edit/RenderEditEntryPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/homepage/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/homepage/Choice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/view/RenderViewEntryPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/view/card/Card.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/view/card/CreateCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/view/card/CreateCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/services/CreatePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/CreatePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/PrepareDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/PrepareDatabase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +55,10 @@
     &quot;accountId&quot;: &quot;4f246ec8-03f2-4d36-86ec-f1598b17b1f0&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -87,6 +76,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.CreatePage.executor": "Run",
+    "Application.DisplayImageExample.executor": "Run",
+    "Application.FilterableComboBoxDemo.executor": "Run",
     "Application.ImageFileChooser.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.MainFrame.executor": "Run",
@@ -170,8 +161,18 @@
       <workItem from="1719564867853" duration="42836000" />
       <workItem from="1719646602872" duration="7274000" />
       <workItem from="1719663776903" duration="2790000" />
-      <workItem from="1719666602604" duration="5083000" />
+      <workItem from="1719666602604" duration="24533000" />
+      <workItem from="1719752601060" duration="44599000" />
     </task>
+    <task id="LOCAL-00001" summary="commit 2">
+      <option name="closed" value="true" />
+      <created>1719672270175</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1719672270175</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +189,10 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -196,6 +201,10 @@
           <line>11</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

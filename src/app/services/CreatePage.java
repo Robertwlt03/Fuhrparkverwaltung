@@ -1,17 +1,18 @@
 package app.services;
 
 import app.component.add.RenderAddEntryPage;
-import app.component.edit.RenderEditEntryPage;
 import app.component.help.RenderHelpPage;
 import app.component.homepage.RenderHomePage;
 import app.component.search.RenderSearchPage;
-import app.component.view.RenderViewEntryPage;
+import app.component.view.RenderViewAllEntryPage;
+import app.component.view.RenderViewSearchPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.sql.Connection;
 
 public class CreatePage extends JFrame implements ActionListener {
     private JPanel cardPanel;
@@ -23,8 +24,9 @@ public class CreatePage extends JFrame implements ActionListener {
     private final Color activeLinkColor = new Color(28, 121, 228);
     private final JButton logoButton = new JButton();
 
+
     // prepare frame
-    public void createFrame() {
+    public void createFrame(Connection conn) {
         this.setTitle("VehicleManager - Startseite");
         this.setSize(1600, 800);
         this.setMinimumSize(new Dimension(800, 600));
@@ -49,17 +51,17 @@ public class CreatePage extends JFrame implements ActionListener {
         JPanel homepagePanel = new RenderHomePage(this);
         JPanel searchPanel = new RenderSearchPage(this);
         JPanel helpPanel = new RenderHelpPage();
-        JPanel viewPanel = new RenderViewEntryPage(this);
-        JPanel addPanel = new RenderAddEntryPage(this);
-        JPanel editPanel = new RenderEditEntryPage(this);
+        JPanel viewAllPanel = new RenderViewAllEntryPage(this, conn);
+        JPanel viewSearchPanel = new RenderViewSearchPage(this, conn);
+        JPanel addPanel = new RenderAddEntryPage(this, conn);
 
         // Panels zum CreateCard hinzufügen
         cardPanel.add(homepagePanel, "Startseite");
         cardPanel.add(searchPanel, "Suche");
         cardPanel.add(helpPanel, "Help");
-        cardPanel.add(viewPanel, "Ergebnisse");
+        cardPanel.add(viewAllPanel, "Ergebnisse Alle");
+        cardPanel.add(viewSearchPanel, "Ergebnisse Suche");
         cardPanel.add(addPanel, "Hinzufügen");
-        cardPanel.add(editPanel, "Bearbeiten");
 
         // Add main panel to JFrame
         add(cardPanel);

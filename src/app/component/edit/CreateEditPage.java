@@ -1,59 +1,67 @@
-package app.component.add;
+package app.component.edit;
+
+import app.models.Vehicle;
 
 import app.component.ImagePanel;
-import app.models.Vehicle;
 import app.modules.VehiclesModule;
 import app.services.ComponentEffects;
 import app.services.ComponentStyle;
-import app.services.CreatePage;
 import app.services.CustomScrollBarUI;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.net.URL;
 import java.sql.Connection;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Form implements ActionListener {
-    private CreatePage createPage;
+public class CreateEditPage extends JFrame implements ActionListener {
     private final Vehicle vehicle = new Vehicle();
     private final ComponentStyle componentStyle = new ComponentStyle();
     private final ComponentEffects componentEffects = new ComponentEffects();
-    private final JButton addButton = new JButton("Jetzt erstellen");
-    private final JButton imgButton = new JButton("Bild hinzufügen");
+    private final JButton removeButton = new JButton("Löschen");
+    private final JButton updateButton = new JButton("Daten aktualisieren");
+    private final JButton imgButton = new JButton("Bild ändern");
     private final ImagePanel imgPreviewPanel = new ImagePanel();
     private final VehiclesModule vehiclesModule = new VehiclesModule();
     private final Map<String, JComponent> inputComponents = new HashMap<>();
-    private Connection conn;
+    private final Connection conn;
     private final JPanel innerFormPanel = new JPanel();
     private String imagePath = null;
+    private final Integer vehicleId;
 
-
-    public JScrollPane createFormPanel(CreatePage createPage, Connection conn) {
-        this.createPage = createPage;
+    public CreateEditPage(Connection conn, Integer vehicleId) {
+        this.vehicleId = vehicleId;
         this.conn = conn;
 
-        JPanel marginPanel = new JPanel(new GridBagLayout());
-        marginPanel.setOpaque(false);
-        marginPanel.setBorder(new EmptyBorder(0, 20, 0, 20));
+        this.setTitle("VehicleManager - Bearbeiten");
+        this.setSize(1000, 800);
+        this.setMinimumSize(new Dimension(800, 600));
+        this.setLayout(new BorderLayout());
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        GridBagConstraints topGbc = new GridBagConstraints();
-        topGbc.fill = GridBagConstraints.HORIZONTAL;
-        topGbc.gridx = 1;
-        topGbc.gridy = 0;
-        topGbc.weightx = 1.0;
-        topGbc.anchor = GridBagConstraints.NORTH;
+        URL logoUrl = getClass().getResource("/app/assets/logo.png");
 
+        if (logoUrl != null) {
+            ImageIcon logo = new ImageIcon(logoUrl);
+            this.setIconImage(logo.getImage());
+        } else {
+            System.err.println("App logo not found: app/assets/logo.png");
+        }
+
+        add(createFormPanel());
+    }
+
+    public JScrollPane createFormPanel() {
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBackground(new Color(0x1D232C));
         formPanel.setBorder(BorderFactory.createLineBorder(new Color(0x1AFFFFFF, true)));
-        marginPanel.add(formPanel, topGbc);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
@@ -112,15 +120,34 @@ public class Form implements ActionListener {
         gbc.gridy = 1;
         innerFormPanel.add(formGrid, gbc);
 
-        addButton.setPreferredSize(new Dimension(300, 25));
-        componentStyle.styleButton(addButton);
-        addButton.addActionListener(this);
+        JPanel ButtonPanel = new JPanel(new GridBagLayout());
+        ButtonPanel.setOpaque(false);
+
+        GridBagConstraints ButtonGbc = new GridBagConstraints();
+        ButtonGbc.fill = GridBagConstraints.BOTH;
+        ButtonGbc.weightx = 1.0;
+        ButtonGbc.gridx = 0;
+        ButtonGbc.insets = new Insets(0, 10, 0, 10);
+
+        updateButton.setPreferredSize(new Dimension(300, 25));
+        componentStyle.styleButton(updateButton);
+        updateButton.addActionListener(this);
+        ButtonPanel.add(updateButton, ButtonGbc);
+
+        ButtonGbc.gridx = 1;
+        ButtonGbc.insets = new Insets(0, 0, 0, 10);
+
+        removeButton.setPreferredSize(new Dimension(300, 25));
+        componentStyle.styleButton(removeButton);
+        removeButton.setBackground(new Color(141, 13, 13));
+        removeButton.addActionListener(this);
+        ButtonPanel.add(removeButton, ButtonGbc);
 
         gbc.fill = GridBagConstraints.CENTER;
         gbc.gridy = 2;
-        innerFormPanel.add(addButton, gbc);
+        innerFormPanel.add(ButtonPanel, gbc);
 
-        JScrollPane scrollPane = new JScrollPane(marginPanel);
+        JScrollPane scrollPane = new JScrollPane(formPanel);
         scrollPane.setBorder(null);
         scrollPane.setBackground(null);
         scrollPane.getViewport().setOpaque(false);
@@ -130,6 +157,8 @@ public class Form implements ActionListener {
         // Customize the scrollbars
         JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
         verticalScrollBar.setUI(new CustomScrollBarUI());
+
+        loadVehicleData();
 
         return scrollPane;
     }
@@ -194,6 +223,45 @@ public class Form implements ActionListener {
         return panel;
     }
 
+    public void loadVehicleData() {
+        Vehicle vehicle = vehiclesModule.getVehicleById(conn, vehicleId);
+
+        if (vehicle != null) {
+            setTextFieldValue("Kennzeichen", vehicle.getLicensePlate());
+            setDropdownValue("Marke", vehicle.getBrand());
+            setTextFieldValue("Modell", vehicle.getModel());
+            setDropdownValue("Typ", vehicle.getType());
+            setTextFieldValue("Farbe", vehicle.getColor());
+            setTextFieldValue("Baujahr", String.valueOf(vehicle.getYear()));
+            setTextAreaValue(vehicle.getDescription());
+            imagePath = vehicle.getImagePath();
+            imgPreviewPanel.setImage(imagePath);
+            imgPreviewPanel.repaint();
+        }
+    }
+
+    private void setTextFieldValue(String label, String value) {
+        JComponent component = inputComponents.get(label);
+        if (component instanceof JTextField) {
+            ((JTextField) component).setText(value);
+        }
+    }
+
+    private void setDropdownValue(String label, String value) {
+        JComponent component = inputComponents.get(label);
+        if (component instanceof JComboBox) {
+            ((JComboBox<String>) component).setSelectedItem(value);
+        }
+    }
+
+    private void setTextAreaValue(String value) {
+        JComponent component = inputComponents.get("Beschreibung");
+        if (component instanceof JTextArea) {
+            ((JTextArea) component).setText(value);
+        }
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -211,7 +279,17 @@ public class Form implements ActionListener {
             }
         }
 
-        if (e.getSource() == addButton) {
+        if (e.getSource() == removeButton) {
+            boolean isDelete = vehiclesModule.deleteVehicleById(conn, vehicleId);
+
+            if (!isDelete) {
+                JOptionPane.showMessageDialog(innerFormPanel, "Bei der Löschung ist ein Fehler aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
+            } else {
+                this.dispose();
+            }
+        }
+
+        if (e.getSource() == updateButton) {
             // Retrieve values from input components
             String licensePlate = getTextFieldValue("Kennzeichen");
             String brand = getDropdownValue();
@@ -240,7 +318,6 @@ public class Form implements ActionListener {
             brand = isEmpty(brand) ? null : brand;
             licensePlate = isEmpty(licensePlate) ? null : licensePlate;
             model = isEmpty(model) ? null : model;
-            model = isEmpty(model) ? null : model;
             color = isEmpty(color) ? null : color;
             year = isEmpty(year) ? null : year;
             description = isEmpty(description) ? null : description;
@@ -252,14 +329,12 @@ public class Form implements ActionListener {
                 type = "PKW";
             }
 
-            boolean isInserted = vehiclesModule.insertVehicle(conn, licensePlate, brand, model, type, color, Integer.valueOf(year), description, imagePath);
+            boolean isUpdated = vehiclesModule.updateVehicle(conn, vehicleId, licensePlate, brand, model, type, color, Integer.parseInt(year), description, imagePath);
 
-            if (!isInserted) {
+            if (!isUpdated) {
                 JOptionPane.showMessageDialog(innerFormPanel, "Ein Fahrzeug mit diesem Kennzeichen existiert bereits.", "Fehler", JOptionPane.ERROR_MESSAGE);
             } else {
-                clearFormFields();
-                createPage.showPage("Startseite");
-                createPage.isActiveLink("home");
+                this.dispose();
             }
         }
     }
@@ -309,16 +384,4 @@ public class Form implements ActionListener {
         return value == null || value.trim().isEmpty();
     }
 
-    private void clearFormFields() {
-        for (Map.Entry<String, JComponent> entry : inputComponents.entrySet()) {
-            JComponent component = entry.getValue();
-            if (component instanceof JTextField) {
-                ((JTextField) component).setText("");
-            } else if (component instanceof JComboBox) {
-                ((JComboBox<?>) component).setSelectedIndex(0);
-            } else if (component instanceof JTextArea) {
-                ((JTextArea) component).setText("");
-            }
-        }
-    }
 }

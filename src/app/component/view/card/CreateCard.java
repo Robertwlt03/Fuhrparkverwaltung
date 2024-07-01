@@ -3,33 +3,37 @@ package app.component.view.card;
 import app.component.ImagePanel;
 import app.services.ComponentEffects;
 import app.services.ComponentStyle;
-import app.services.CreatePage;
+import app.component.edit.CreateEditPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.net.URL;
+import java.sql.Connection;
 
 public class CreateCard {
-    private CreatePage createPage;
     private final ComponentStyle componentStyle = new ComponentStyle();
     private final ComponentEffects componentEffects = new ComponentEffects();
+    Connection conn;
 
     public void addCard(
-            CreatePage createPage,
             int max_column,
             JPanel panel,
+            int vehicleId,
             String img_location,
             String brand,
+            String license_plate,
             String model,
             String type,
             String color,
             String construction_year,
             String description,
             int gridx,
-            int gridy
+            int gridy,
+            Connection conn
     ) {
-        this.createPage = createPage;
+        this.conn = conn;
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
@@ -43,36 +47,41 @@ public class CreateCard {
             gbc.insets = new Insets(0, 0, 10, 0);
         }
 
-        panel.add(createCard(img_location, brand, model, type, color, construction_year, description), gbc);
+        panel.add(createCard(img_location, brand, license_plate, model, type, color, construction_year, description, vehicleId, conn), gbc);
     }
 
     private JPanel createCard(
             String img_location,
             String brand,
+            String license_plate,
             String model,
             String type,
             String color,
             String construction_year,
-            String description
+            String description,
+            int vehicleId,
+            Connection conn
     ) {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBorder(BorderFactory.createLineBorder(new Color(0x1AFFFFFF, true)));
         panel.setBackground(new Color(0x1D232C));
-
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
-        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.insets = new Insets(10, 10, 5, 10);
 
         ImagePanel imgPreviewPanel = new ImagePanel();
         imgPreviewPanel.setOpaque(false);
-        imgPreviewPanel.setBorder(BorderFactory.createLineBorder(new Color(0x1AFFFFFF, true)));
-        imgPreviewPanel.setPreferredSize(new Dimension(0, 100));
-        imgPreviewPanel.setImage(img_location);
-        imgPreviewPanel.repaint();
+
+        if (img_location == null) {
+            URL noimage = getClass().getResource("/app/assets/no_image.png");
+            imgPreviewPanel.emptyImage(noimage);
+        } else {
+            imgPreviewPanel.setImage(img_location);
+        }
 
         // Add component listener to maintain 16:9 aspect ratio
         panel.addComponentListener(new ComponentAdapter() {
@@ -82,6 +91,7 @@ public class CreateCard {
                 int height = (int) (width / 16.0 * 9);
                 imgPreviewPanel.setPreferredSize(new Dimension(width, height));
                 panel.revalidate();
+                panel.repaint();
             }
         });
 
@@ -89,6 +99,7 @@ public class CreateCard {
 
         JPanel gridPanel = new JPanel(new GridBagLayout());
         gridPanel.setOpaque(false);
+        gridPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(0x1AFFFFFF, true)));
         gbc.gridy = 1;
         panel.add(gridPanel, gbc);
 
@@ -99,7 +110,7 @@ public class CreateCard {
         leftGbc.gridx = 0;
         leftGbc.gridy = 0;
         leftGbc.weightx = 1.0;
-        leftGbc.insets = new Insets(0, 0, 0, 60);
+        leftGbc.insets = new Insets(5, 0, 0, 60);
         gridPanel.add(leftPanel, leftGbc);
 
         JPanel rightPanel = new JPanel(new GridBagLayout());
@@ -110,6 +121,7 @@ public class CreateCard {
         rightGbc.gridy = 0;
         rightGbc.weightx = 1.0;
         rightGbc.anchor = GridBagConstraints.NORTH;
+        rightGbc.insets = new Insets(5, 0, 0, 0);
         gridPanel.add(rightPanel, rightGbc);
 
         // Add description in the rightPanel
@@ -120,17 +132,21 @@ public class CreateCard {
         JPanel jPanel_brand = new JPanel();
         createContent(leftPanel, jPanel_brand, 1, "Marke", brand, false);
 
+        JPanel jPanel_license_plate = new JPanel();
+        createContent(leftPanel, jPanel_license_plate, 2, "Kennzeichen", license_plate, false);
+
         JPanel jPanel_model = new JPanel();
-        createContent(leftPanel, jPanel_model, 2, "Modell", model, false);
+        createContent(leftPanel, jPanel_model, 3, "Modell", model, false);
 
         JPanel jPanel_type = new JPanel();
-        createContent(leftPanel, jPanel_type, 3, "Typ", type, false);
+        createContent(leftPanel, jPanel_type, 4, "Typ", type, false);
+
 
         JPanel jPanel_color = new JPanel();
-        createContent(leftPanel, jPanel_color, 4, "Farbe", color, false);
+        createContent(leftPanel, jPanel_color, 5, "Farbe", color, false);
 
         JPanel jPanel_year = new JPanel();
-        createContent(leftPanel, jPanel_year, 5, "Baujahr", construction_year, false);
+        createContent(leftPanel, jPanel_year, 6, "Baujahr", construction_year, false);
 
         JButton editButton = new JButton("Bearbeiten");
         editButton.setPreferredSize(new Dimension(Integer.MAX_VALUE, 25));
@@ -138,8 +154,7 @@ public class CreateCard {
         componentEffects.buttonHover(editButton);
         gbc.gridy = 2;
         panel.add(editButton, gbc);
-        addActionListenerToButton(editButton);
-
+        addActionListenerToButton(editButton, vehicleId);
 
         return panel;
     }
@@ -164,7 +179,7 @@ public class CreateCard {
         JLabel jLabel_header = new JLabel(header + ":");
         jLabel_header.setForeground(new Color(0xFFA2A2A2, true));
         if (!verticalStack) {
-            jLabel_header.setPreferredSize(new Dimension(60, jLabel_header.getPreferredSize().height));
+            jLabel_header.setPreferredSize(new Dimension(110, jLabel_header.getPreferredSize().height));
         }
         panel.add(jLabel_header, gbcInner);
 
@@ -174,9 +189,8 @@ public class CreateCard {
         gbcInner.weightx = 1.0;
         gbcInner.weighty = 1.0;
 
-
         if (verticalStack) {
-            JTextArea jTextArea_content = new JTextArea (content);
+            JTextArea jTextArea_content = new JTextArea(content);
             jTextArea_content.setLineWrap(true);
             jTextArea_content.setWrapStyleWord(true);
             jTextArea_content.setOpaque(false);
@@ -191,11 +205,13 @@ public class CreateCard {
         }
     }
 
-    private void addActionListenerToButton(JButton button) {
+    private void addActionListenerToButton(JButton button, Integer vehicleId) {
         button.addActionListener(e -> {
             if (e.getSource() == button) {
-                createPage.showPage("Bearbeiten");
-                createPage.isActiveLink(null);
+                if (vehicleId != null) {
+                    CreateEditPage createEditPage = new CreateEditPage(conn, vehicleId);
+                    createEditPage.setVisible(true);
+                }
             }
         });
     }

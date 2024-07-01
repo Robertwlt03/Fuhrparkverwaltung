@@ -1,14 +1,15 @@
 package app.component.view;
 
 import app.component.Header;
-import app.component.view.card.Card;
+import app.component.view.card.SearchCards;
 import app.services.CreatePage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
 
-public class RenderViewEntryPage extends JPanel {
-    public RenderViewEntryPage(CreatePage createPage) {
+public class RenderViewSearchPage extends JPanel {
+    public RenderViewSearchPage(CreatePage createPage, Connection conn) {
         // Set the layout for the main panel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(0x14181E));
@@ -19,8 +20,8 @@ public class RenderViewEntryPage extends JPanel {
         add(headerPanel);
 
         // Add card panel
-        Card card = new Card();
-        JScrollPane cardPanel = card.createCardPanel(createPage);
+        SearchCards searchCards = new SearchCards(conn);
+        JScrollPane cardPanel = searchCards.createSearchCardsPanel(createPage, "", "BMW", "", "", "", 2003);
         add(cardPanel);
 
         add(Box.createRigidArea(new Dimension(0, 20)));
